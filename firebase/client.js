@@ -1,6 +1,12 @@
 // Import the functions you need from the SDKs you need
-import {initializeApp} from "firebase/app";
-import {getAuth, signInWithPopup, GithubAuthProvider, onAuthStateChanged} from "firebase/auth";
+import { initializeApp } from "firebase/app"
+import {
+    getAuth,
+    signInWithPopup,
+    onAuthStateChanged,
+    GithubAuthProvider,
+    FacebookAuthProvider,
+} from "firebase/auth"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -13,32 +19,30 @@ const firebaseConfig = {
     storageBucket: "devtter-8c6ca.appspot.com",
     messagingSenderId: "388937984240",
     appId: "1:388937984240:web:230424fa1034f3055fba35",
-    measurementId: "G-F9BW1X5RZC"
-};
+    measurementId: "G-F9BW1X5RZC",
+}
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig)
 
-const mapUserFromGithub = (user) => (
-    {
-        name: user.displayName,
-        photo: user.photoURL,
-        email: user.email
-    }
-)
+const mapUserFromGithub = (user) => ({
+    name: user.displayName,
+    photo: user.photoURL,
+    email: user.email,
+})
 
 export const onAuthStateChange = (onChange) => {
     const auth = getAuth()
 
     // El user de a continuation es el objeto completo de la autenticación con github
-    return onAuthStateChanged(auth, user => {
+    return onAuthStateChanged(auth, (user) => {
         const normalizedUser = user && mapUserFromGithub(user)
         onChange(normalizedUser)
     })
 }
 
 export const loginWithGithub = () => {
-    const provider = new GithubAuthProvider();
-    const auth = getAuth();
+    const provider = new GithubAuthProvider()
+    const auth = getAuth()
     signInWithPopup(auth, provider)
 }

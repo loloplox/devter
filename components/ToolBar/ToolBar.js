@@ -4,13 +4,15 @@ import { FaComment } from "react-icons/fa";
 import { RiShareForwardFill } from "react-icons/ri";
 import Button from "../Button/Button";
 
-function ToolBar(props) {
+function ToolBar({ likesCount = 0, sharedCounts = 0 }) {
     return (
         <>
             <div className="toolbar">
-                <Button content={<GiHearts />} width="15%" heigth="30px" fontSize="15px" margin="auto" />
-                <Button content={<FaComment />} width="15%" heigth="30px" fontSize="15px" margin="auto" />
-                <Button content={<RiShareForwardFill />} width="15%" heigth="30px" fontSize="15px" margin="auto" />
+                <Button icon={<GiHearts />} content={likesCount} width="15%" heigth="30px" fontSize="15px"
+                        margin="auto" />
+                <Button icon={<FaComment />} width="15%" heigth="30px" fontSize="15px" margin="auto" />
+                <Button icon={<RiShareForwardFill />} content={sharedCounts} width="15%" heigth="30px" fontSize="15px"
+                        margin="auto" />
             </div>
             
             <style jsx>{`

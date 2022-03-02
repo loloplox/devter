@@ -8,6 +8,7 @@ import { RiTreasureMapFill } from "react-icons/ri";
 import { MdOutlineMoreHoriz } from "react-icons/md";
 import Avatar from "../Avatar/Avatar";
 import Button from "../Button/Button";
+import useUser from "../../hooks/useUser";
 
 function Navbar(props) {
     const links = [
@@ -52,6 +53,7 @@ function Navbar(props) {
             icon: <MdOutlineMoreHoriz />
         }
     ];
+    const user = useUser();
     
     
     return (
@@ -81,8 +83,10 @@ function Navbar(props) {
                     </div>
                 </div>
                 <div className="navbar__avatar">
-                    <Avatar photo="https://picsum.photos/200" name="Rodrigo Maldonado Vasquez"
-                            email={"rodrigomaldonoadov8@gmail.com"} border />
+                    {user ? <Avatar photo={user.photo} name={user.name}
+                                    email={user.email} border /> :
+                        <Avatar photo="https://acegif.com/wp-content/uploads/loading-25.gif"
+                                name="cargando...." border />}
                 </div>
             </nav>
             

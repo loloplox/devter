@@ -2,11 +2,11 @@ import React from "react";
 import Content from "../Content/Content";
 import Slider from "../Slider/Slider";
 
-function Main(props) {
+function Main({ divts, setDivts }) {
     return (
         <>
             <div className="main">
-                <Content />
+                <Content divts={divts} setDivts={setDivts} />
                 <Slider />
             </div>
             <style jsx>{`

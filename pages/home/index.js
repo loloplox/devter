@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../components/NavBar/Navbar";
 import Main from "../../components/Main/Main";
 import styles from "../../styles/Home.module.css";
 import Head from "next/head";
+import { fetchLatestDivts } from "../../firebase/client";
 
 function Home(props) {
+    const [divts, setDivts] = useState([]);
+    
+    useEffect(() => {
+        fetchLatestDivts().then(setDivts);
+    }, []);
+    
     return (
         <div className={styles.container}>
             <Head>
@@ -17,7 +24,7 @@ function Home(props) {
             </Head>
             <main>
                 <Navbar />
-                <Main />
+                <Main divts={divts} setDivts={setDivts} />
             </main>
             
             <style jsx>{`

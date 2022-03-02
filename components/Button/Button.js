@@ -1,11 +1,11 @@
 import React from "react";
 
-function Button({ width, heigth, content, fontSize, padding, margin, fontWeight }) {
+function Button({ width, heigth, content, fontSize, padding, margin, fontWeight, disabled, icon }) {
     
     return (
         <>
-            <button>
-                {content}
+            <button disabled={disabled}>
+                {icon} {content}
             </button>
             
             <style jsx>{`
@@ -13,7 +13,7 @@ function Button({ width, heigth, content, fontSize, padding, margin, fontWeight 
                 border: none;
                 height: ${heigth};
                 width: ${width};
-                cursor: pointer;
+                cursor: ${disabled ? "auto" : "pointer"};
                 border-radius: 10px;
                 font-size: ${fontSize};
                 padding: ${padding};
@@ -22,8 +22,8 @@ function Button({ width, heigth, content, fontSize, padding, margin, fontWeight 
               }
 
               button:hover {
-                transition: all 0.2s ease-in-out;
-                background-color: #e6e6e6;
+                transition: ${!disabled && "all 0.2s ease-in-out"};
+                background-color: ${!disabled && "#e6e6e6"};
               }
             `}</style>
         </>

@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../../styles/Home.module.css";
 import Head from "next/head";
 import Button from "../../components/Button/Button";
+import Loading from "../../components/Loading/Loading";
 
 function Index(props) {
     return (
@@ -15,8 +16,8 @@ function Index(props) {
                 <link rel="icon" href="/Logo.ico" />
             </Head>
             
-            <main className={styles.main}>
-                <Button content="Presioname" width="100px" heigth="50px" />
+            <main>
+                <Loading />
             </main>
         </div>
     );
